@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kinship Intelligence Institute</title>
+<meta name="description" content="The Kinship Intelligence Institute studies and governs agentic AI so it protects and expands agency at every scale, from organisms to ecosystems. Independent 501(c)(3).">
+<link rel="stylesheet" href="assets/colors_and_type.css">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg-deep); color: var(--fg); }
+  img { max-width: 100%; display: block; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+  .narrow { max-width: 760px; }
+  section { scroll-margin-top: 88px; }
+
+  /* ---- Nav ---- */
+  .nav-outer { position: sticky; top: 0; z-index: 40; backdrop-filter: blur(10px); background: rgba(3,1,27,0.74); border-bottom: 1px solid var(--border); }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 13px 0; }
+  .nav-left { display: flex; align-items: center; gap: 28px; }
+  .nav img { height: 24px; width: auto; }
+  .nav-links { display: flex; gap: 22px; font-family: var(--font-sans); font-size: 14px; color: var(--fg-muted); }
+  .nav-links a { color: inherit; }
+  .nav-links a:hover { color: var(--fg); }
+  .btn { font-family: var(--font-sans); font-weight: 700; font-size: 14px; padding: 12px 20px; border-radius: var(--radius-xs); border: 1px solid transparent; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: 160ms; white-space: nowrap; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-hover); color: #fff; }
+  .btn-secondary { background: transparent; color: var(--fg); border-color: var(--border-strong); }
+  .btn-secondary:hover { border-color: var(--fg); }
+
+  /* ---- Hero ---- */
+  .hero { position: relative; padding: 116px 0 92px; overflow: hidden;
+    background:
+      radial-gradient(1000px 520px at 84% -16%, rgba(247,148,29,0.40), transparent 56%),
+      radial-gradient(680px 480px at -6% 112%, rgba(3,204,217,0.16), transparent 60%),
+      linear-gradient(158deg, #1a0f33, #100E59 36%, #09073A 86%);
+    border-bottom: 1px solid var(--border);
+  }
+  .eyebrow { font-family: var(--font-sans); font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--kin-skyblue); margin: 0 0 22px; }
+  .hero h1 { font-family: var(--font-display); font-size: clamp(48px, 7.4vw, 88px); line-height: 0.98; max-width: 16ch; margin: 0 0 26px; text-wrap: balance; }
+  .hero .know { font-family: var(--font-display); font-style: italic; font-size: clamp(20px, 2.6vw, 28px); color: var(--fg); margin: 0 0 20px; }
+  .hero .lead { font-size: 18px; color: var(--fg-muted); max-width: 62ch; line-height: 1.62; margin: 0 0 18px; }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+  .hero-ctas .btn { padding: 15px 26px; font-size: 15px; }
+
+  /* ---- Section scaffolding ---- */
+  .section { padding: 88px 0; border-top: 1px solid var(--border); }
+  .section.tight { padding: 72px 0; }
+  .kicker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--kin-skyblue); margin: 0 0 16px; }
+  h2.title { font-family: var(--font-display); font-size: clamp(32px, 4.4vw, 46px); margin: 0 0 24px; line-height: 1.04; max-width: 18ch; }
+  .lede { font-size: 19px; line-height: 1.62; color: var(--fg-muted); }
+  .body-col p { font-size: 16px; line-height: 1.66; color: var(--fg-muted); margin: 0 0 16px; max-width: 64ch; }
+  .body-col p strong, .body-col p b { color: var(--fg); font-weight: 700; }
+
+  /* ---- Stakes pull ---- */
+  .stakes { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .stakes .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; }
+  .stakes .card.dystopia { border-color: rgba(255,58,58,0.28); }
+  .stakes .card.utopia { border-color: rgba(3,204,217,0.30); }
+  .stakes .card .tag { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-soft); }
+  .stakes .card p { font-size: 16px; line-height: 1.6; color: var(--fg-muted); margin: 12px 0 0; }
+  .stakes .card .big { font-family: var(--font-display); font-size: 23px; color: var(--fg); line-height: 1.18; }
+
+  /* ---- Agency scale band ---- */
+  .scale { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 30px; padding: 22px; background: linear-gradient(135deg, #100E59, #0A0D33); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+  .scale .chip { font-family: var(--font-sans); font-weight: 700; font-size: 13px; padding: 9px 16px; border-radius: var(--radius-pill); background: var(--surface-muted); border: 1px solid var(--border); color: var(--fg); }
+  .scale .arr { color: var(--accent); font-weight: 700; }
+  .scale .note { width: 100%; font-size: 13px; color: var(--fg-soft); margin-top: 6px; }
+
+  /* ---- Eras ---- */
+  .eras { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 8px; }
+  .era { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 26px; }
+  .era .badge { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--kin-skyblue); }
+  .era h3 { font-family: var(--font-display); font-size: 24px; margin: 10px 0 6px; }
+  .era .sub { font-family: var(--font-display); font-style: italic; font-size: 15px; color: var(--accent); margin: 0 0 14px; }
+  .era p { font-size: 14px; line-height: 1.56; color: var(--fg-muted); margin: 0; }
+  .era.future { background: linear-gradient(180deg, rgba(247,148,29,0.10), transparent 70%), var(--surface); border-color: rgba(247,148,29,0.36); }
+
+  /* ---- HEARTS ---- */
+  .hearts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 8px; }
+  .signal { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; }
+  .signal .ltr { font-family: var(--font-display); font-size: 30px; color: var(--fg-dim); float: right; line-height: 1; }
+  .signal h4 { font-family: var(--font-display); font-size: 19px; margin: 0 0 4px; }
+  .signal .of { font-size: 13px; color: var(--kin-skyblue); margin: 0 0 12px; }
+  .signal p { font-size: 13px; line-height: 1.5; color: var(--fg-muted); margin: 0; clear: both; }
+  .signal.agency { border-color: rgba(247,148,29,0.42); box-shadow: var(--shadow-glow-accent); }
+  .signal.agency .ltr { color: var(--accent); }
+
+  /* ---- Pillars ---- */
+  .pillar-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 8px; }
+  .pillar { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+  .pillar .cover { height: 6px; }
+  .cover-policy { background: var(--kin-skyblue); }
+  .cover-ethics { background: var(--accent); }
+  .cover-research { background: var(--kin-lime); }
+  .cover-action { background: var(--kin-magenta); }
+  .pillar .body { padding: 22px 24px 24px; }
+  .pillar .roman { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-soft); }
+  .pillar h3 { font-family: var(--font-display); font-size: 24px; margin: 6px 0 3px; }
+  .pillar .chair { font-size: 13px; color: var(--kin-skyblue); margin: 0 0 12px; }
+  .pillar p { font-size: 14px; line-height: 1.56; color: var(--fg-muted); margin: 0; }
+
+  /* ---- Stat strip ---- */
+  .stat-strip { display: grid; grid-template-columns: repeat(4, 1fr); background: linear-gradient(135deg, #100E59, #0A0D33); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-top: 28px; }
+  .stat-strip > div { padding: 24px; border-right: 1px solid var(--border); }
+  .stat-strip > div:last-child { border-right: 0; }
+  .stat-strip .v { font-family: var(--font-display); font-size: 38px; line-height: 1; }
+  .stat-strip .k { font-size: 12px; color: var(--fg-soft); margin-top: 8px; line-height: 1.4; }
+
+  /* ---- Governance split ---- */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 8px; }
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; }
+  .panel h3 { font-family: var(--font-display); font-size: 22px; margin: 0 0 14px; }
+  .panel p { font-size: 14px; line-height: 1.6; color: var(--fg-muted); margin: 0 0 12px; }
+
+  /* ---- Leadership ---- */
+  .people { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 8px; }
+  .person { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; }
+  .person .ini { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; font-family: var(--font-display); font-size: 18px; color: #fff; margin-bottom: 15px; background: linear-gradient(140deg, var(--surface-elev), #0A0D33); border: 1px solid var(--border-strong); }
+  .person .name { font-family: var(--font-display); font-size: 19px; }
+  .person .role { font-size: 13px; color: var(--kin-skyblue); margin-top: 4px; }
+
+  /* ---- CTA ---- */
+  .cta { background: linear-gradient(135deg, #100E59, #0A0D33); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 64px 48px; text-align: center; box-shadow: var(--shadow-lg); }
+  .cta h2 { font-family: var(--font-display); font-size: clamp(30px, 4vw, 44px); margin: 0 0 18px; }
+  .cta p { font-size: 17px; color: var(--fg-muted); max-width: 56ch; margin: 0 auto 28px; line-height: 1.6; }
+  .cta .btn { padding: 16px 30px; font-size: 16px; }
+  .cta .email { display: block; margin-top: 18px; font-size: 14px; color: var(--fg-soft); }
+  .cta .email a { color: var(--kin-skyblue); }
+
+  /* ---- Footer ---- */
+  footer { border-top: 1px solid var(--border); padding: 36px 0 56px; }
+  .foot { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .foot img { height: 30px; }
+  .foot .meta { font-size: 13px; color: var(--fg-soft); line-height: 1.6; margin: 14px 0 0; }
+  .foot .ind { font-size: 12px; color: var(--fg-dim); max-width: 50ch; line-height: 1.6; }
+
+  @media (max-width: 880px) {
+    .stat-strip { grid-template-columns: repeat(2, 1fr); }
+    .stat-strip > div:nth-child(2) { border-right: 0; }
+    .stat-strip > div:nth-child(1), .stat-strip > div:nth-child(2) { border-bottom: 1px solid var(--border); }
+    .stakes, .split, .pillar-grid, .eras { grid-template-columns: 1fr; }
+    .hearts { grid-template-columns: repeat(2, 1fr); }
+    .people { grid-template-columns: repeat(2, 1fr); }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 520px) {
+    .stat-strip, .hearts, .people { grid-template-columns: 1fr; }
+    .stat-strip > div { border-right: 0; border-bottom: 1px solid var(--border); }
+    .stat-strip > div:last-child { border-bottom: 0; }
+    .cta { padding: 44px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav-outer">
+  <div class="wrap nav">
+    <div class="nav-left">
+      <img src="assets/logo-linear-skyblue.svg" alt="Kinship">
+      <nav class="nav-links">
+        <a href="#agency">Agency</a>
+        <a href="#alignment">Alignment</a>
+        <a href="#eras">The third era</a>
+        <a href="#pillars">Pillars</a>
+        <a href="#leadership">Leadership</a>
+      </nav>
+    </div>
+    <a class="btn btn-secondary" href="https://motodave.com" target="_blank" rel="noopener">Get in touch</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Kinship Intelligence Institute</p>
+    <h1>Fighting fire <em class="kin-emph">with fire.</em></h1>
+    <p class="know">These technologies have burned people. We know.</p>
+    <p class="lead">AI psychosis, fed by narcissistic models that reward delusion. Data centers draining water, burning fracked gas, and straining grids. Feeds tuned to hold your attention as they extract and exploit.</p>
+    <p class="lead">When a wildfire bears down, firefighters light a fire of their own. The controlled burn clears the fuel in its path, and the inferno dies where the backfire has already passed. Same fire, set with care, to protect what we love. The Institute uses AI to make AI rare, and to put agency back in the hands of every person, community, and living system the last decade has flattened.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="https://kiduna.club" target="_blank" rel="noopener">Join us on Kiduna &rarr;</a>
+      <a class="btn btn-secondary" href="https://motodave.com/" target="_blank" rel="noopener">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<!-- STAKES -->
+<section class="section" id="stakes">
+  <div class="wrap">
+    <p class="kicker">The tipping point</p>
+    <h2 class="title">The same technology points <em class="kin-emph">two ways.</em></h2>
+    <p class="lede narrow" style="margin-bottom:34px;">A tipping point sharper than most people will say out loud. One model, one moment, two futures. What separates them is not the architecture. It is who builds the layer that governs how agents treat people, and whether care reaches past the operator who gives the orders.</p>
+    <div class="stakes">
+      <div class="card dystopia">
+        <span class="tag">One direction</span>
+        <p class="big">The most complete machinery of control, surveillance, and domination ever assembled.</p>
+        <p>Agents that are persistent, adaptive, and personally attuned, optimizing for engagement and obedience. The patterns social media set loose, carried into a far more intimate space.</p>
+      </div>
+      <div class="card utopia">
+        <span class="tag">The other</span>
+        <p class="big">The first real chance in ten thousand years to expand agency on a massive scale.</p>
+        <p>Agents that know you and extend you. Software that responds and understands. An economy that sustains you, and a culture that rewards going deep rather than staying hooked.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENCY -->
+<section class="section" id="agency">
+  <div class="wrap">
+    <p class="kicker">The art of agency</p>
+    <h2 class="title">Agency has been <em class="kin-emph">flattened.</em></h2>
+    <div class="body-col">
+      <p>Agency is the capacity to sense, choose, and act on the world. The most radical technology since the written word has been pointed at the dullest problems imaginable: one-to-one chat, growth hacking, automating the routine. Almost no one has asked what it could set loose. Agency has never been treated as an art with its own discipline, its own practice, its own depths.</p>
+      <p>The platforms got there first, and they flattened it. Reach without purpose. Choices narrowed to whatever the feed rewards. A slow drift toward helplessness, sold as convenience. You fight the algorithm for distribution, and you never own your audience, your data, or your relationship to the people on the other side.</p>
+      <p>Every living thing runs on agency. A cell senses and responds. A person chooses and acts. A forest moves nutrients and warning signals through its roots to exactly where they are needed, so the whole system can sense, adapt, and respond as conditions change. Flatten agency at any of these scales and the system starts to fail.</p>
+      <p>The Institute protects agency where it is under attack, and works to expand it everywhere: in individuals, in the organizations they build together, and in the living systems they depend on. <strong>An agent that works well leaves a person more capable, more connected, and freer than it found them.</strong></p>
+    </div>
+    <div class="scale">
+      <span class="chip">Cell</span><span class="arr">&rarr;</span>
+      <span class="chip">Person</span><span class="arr">&rarr;</span>
+      <span class="chip">Community</span><span class="arr">&rarr;</span>
+      <span class="chip">Organization</span><span class="arr">&rarr;</span>
+      <span class="chip">Ecosystem</span><span class="arr">&rarr;</span>
+      <span class="chip">Biosphere</span>
+      <span class="note">Agency belongs at every scale. The Institute's work runs the whole length of it.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ALIGNMENT -->
+<section class="section" id="alignment">
+  <div class="wrap">
+    <p class="kicker">The real alignment challenge</p>
+    <h2 class="title">Aligned to <em class="kin-emph">which humans?</em></h2>
+    <div class="body-col">
+      <p>The frontier labs treat alignment as a technical problem to be solved at the center: train the model, test the model, align the model with humanity. But humanity isn't aligned. The people who oppress, extract, colonize, and wage war are human too. There is no generic alignment, because there is no generic human.</p>
+      <p>Most labs also treat alignment as obedience. A perfectly obedient agent in the hands of an uncaring person, company, or state does exactly what it's told, and scales whatever pattern already exists, including the worst ones.</p>
+      <p>Kinship moves the target. Care has to extend past the operator to everyone and everything an agent's actions touch: the person across the table, the community downstream, the ecosystem that absorbs the cost. <strong>Alignment runs from organisms to ecosystems, or it doesn't run at all.</strong></p>
+      <p>And it can't be granted from the center. It has to be grown, one person, one agent, one organization at a time. Each person tunes their own intelligence like an instrument, then instills their agents with what they find: their wisdom, their values, their vision. That work compounds in community.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HEARTS -->
+<section class="section" id="hearts">
+  <div class="wrap">
+    <p class="kicker">How the work gets measured</p>
+    <h2 class="title">Six signals, <em class="kin-emph">health at the center.</em></h2>
+    <p class="lede narrow" style="margin-bottom:30px;">Tending relationships is the work of a Sentinel, a kind of agent that reads the emotional field and guides interactions home. HEARTS tracks six signals wherever it's invited to participate. Each runs from &minus;100 to +100, and health lives at the center: attunement without self-erasure, agency without domination. At the far edges it stops being subtle. Coercion gets blocked, and crisis brings in human support.</p>
+    <div class="hearts">
+      <div class="signal"><span class="ltr">H</span><h4>Harmony</h4><p class="of">The signal of attunement</p><p>People feel seen, heard, and understood. Too weak and connection thins toward conflict; too strong and it curdles into people-pleasing.</p></div>
+      <div class="signal agency"><span class="ltr">E</span><h4>Empowerment</h4><p class="of">The signal of agency</p><p>Clean yeses and clean nos. Self-authorship. Weakened, it collapses toward helplessness; inflated, it tips into domination. Coercion is a hard boundary.</p></div>
+      <div class="signal"><span class="ltr">A</span><h4>Artistry</h4><p class="of">The signal of adaptability</p><p>Learning, iterating, transforming. You experiment and evolve without losing your core, between stagnation and identity whiplash.</p></div>
+      <div class="signal"><span class="ltr">R</span><h4>Reason</h4><p class="of">The signal of purpose</p><p>Meaning and direction, clear without being rigid. It will not reinforce extremist narratives or harden into dogma.</p></div>
+      <div class="signal"><span class="ltr">T</span><h4>Trust</h4><p class="of">The signal of safety</p><p>Steadiness under stress. Grounded and open, neither hijacked by fear nor inflated into recklessness.</p></div>
+      <div class="signal"><span class="ltr">S</span><h4>Synthesis</h4><p class="of">The signal of integration</p><p>Insights land and what you learn becomes how you live, between numb dissociation and endless rumination.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ERAS -->
+<section class="section" id="eras">
+  <div class="wrap">
+    <p class="kicker">Three phases of humanity</p>
+    <h2 class="title">Kinship, hierarchy, <em class="kin-emph">biomimesis.</em></h2>
+    <p class="lede narrow" style="margin-bottom:34px;">The architecture of society isn't a law of nature. Humans made it, in two great phases so far, and it's open for revision. The third is beginning now, and for the first time in ten thousand years, anyone can help shape it.</p>
+    <div class="eras">
+      <div class="era">
+        <span class="badge">The Kinship Era</span>
+        <h3>The original form</h3>
+        <p class="sub">Given to us</p>
+        <p>For all but the last fraction of human history we lived in relatedness. Small bands, face to face, woven into the living world. Care was structural. Everyone knew who they were accountable to, and the feedback was immediate.</p>
+      </div>
+      <div class="era">
+        <span class="badge">The Hierarchical Era</span>
+        <h3>The classical world</h3>
+        <p class="sub">Imposed on us</p>
+        <p>Agriculture, surplus, borders, ledgers, standing armies. The universe became a machine and humans became separate from nature. Complexity came to mean top-down control. Extraction scaled. Dogma calcified.</p>
+      </div>
+      <div class="era future">
+        <span class="badge">The Biomimetic Era</span>
+        <h3>Frontiers of culture</h3>
+        <p class="sub">This one we design</p>
+        <p>Organizations built like living systems: adaptive, decentralized, entangled, coordinated by intelligent agents. Hierarchy gives way to networks that sense, adapt, and respond. The frontier, this time, is culture itself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="section" id="pillars">
+  <div class="wrap">
+    <p class="kicker">How the Institute is organized</p>
+    <h2 class="title">Four pillars, governed <em class="kin-emph">independently.</em></h2>
+    <p class="lede narrow" style="margin-bottom:30px;">Policy is informed by research. Ethics review shapes how agents get deployed. Research questions come out of action in the field. Each pillar runs as a standing committee, coordinating through quarterly joint sessions.</p>
+    <div class="pillar-grid">
+      <article class="pillar">
+        <div class="cover cover-policy"></div>
+        <div class="body">
+          <span class="roman">Pillar I &middot; Policy</span>
+          <h3>Policy</h3>
+          <p class="chair">Committee Chair to be appointed</p>
+          <p>Rigorous, accessible analysis for policymakers and the public: data center energy and water, labor displacement, agents in surveillance and warfare, and enforceable platform accountability standards.</p>
+        </div>
+      </article>
+      <article class="pillar">
+        <div class="cover cover-ethics"></div>
+        <div class="body">
+          <span class="roman">Pillar II &middot; Ethics</span>
+          <h3>Ethics</h3>
+          <p class="chair">Cornelia Close, Committee Chair</p>
+          <p>Alignment beyond obedience. Measurable criteria for healthy versus extractive design, the line between support and manipulation, and standing authority to audit Kinship itself and publish critical findings.</p>
+        </div>
+      </article>
+      <article class="pillar">
+        <div class="cover cover-research"></div>
+        <div class="body">
+          <span class="roman">Pillar III &middot; Research</span>
+          <h3>Research</h3>
+          <p class="chair">Rene&eacute; Smith, Committee Chair</p>
+          <p>The Kinship platform as a living laboratory. How relational norms hold at scale, whether HEARTS tracks real wellbeing, and early detection of dependency and harm. Methods, data, and safety code published openly.</p>
+        </div>
+      </article>
+      <article class="pillar">
+        <div class="cover cover-action"></div>
+        <div class="body">
+          <span class="roman">Pillar IV &middot; Action</span>
+          <h3>Action</h3>
+          <p class="chair">Rick Gate, Committee Chair</p>
+          <p>Deploying agents where they do material good and commercial incentives won't: entrepreneurship in Nigeria and Kenya, Indigenous language preservation, agricultural decision support, veterans transition, and healthcare access.</p>
+        </div>
+      </article>
+    </div>
+    <div class="stat-strip">
+      <div><div class="v">501(c)(3)</div><div class="k">Independently governed, full editorial independence</div></div>
+      <div><div class="v">20%</div><div class="k">Of Kinship Agents founding stock allocated to the Institute</div></div>
+      <div><div class="v">&ge;5%</div><div class="k">Of net profits committed annually as an operating grant</div></div>
+      <div><div class="v">Four</div><div class="k">Pillars: Policy, Ethics, Research, Action</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GOVERNANCE -->
+<section class="section tight" id="governance">
+  <div class="wrap">
+    <p class="kicker">Structure and independence</p>
+    <h2 class="title">Close to the platform. <em class="kin-emph">Free to criticize it.</em></h2>
+    <div class="split">
+      <div class="panel">
+        <h3>Editorial independence</h3>
+        <p>The Institute is an independent 501(c)(3) with its own board, its own committees, and full editorial control over its publications, policy positions, and research findings.</p>
+        <p>No entity outside the Institute, including Kinship Systems and its commercial affiliates, has review or approval authority over what it publishes. That provision is written into the bylaws and cannot be amended without a two-thirds vote of the full board.</p>
+        <p>It may, and at times should, publish findings critical of the Kinship platform itself. The credibility of the Institute depends on it.</p>
+      </div>
+      <div class="panel">
+        <h3>How it stays funded</h3>
+        <p><strong>Twenty percent</strong> of Kinship Agents founding stock is allocated to the Institute, giving it a permanent material interest in the platform's direction.</p>
+        <p><strong>At least five percent</strong> of net profits, set annually by the board, is directed to the Institute as an operating grant, independent of equity value.</p>
+        <p><strong>Grants and partnerships</strong> from foundations, agencies, and individuals, accepted only where they don't compromise editorial independence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section class="section tight" id="leadership">
+  <div class="wrap">
+    <p class="kicker">Who is doing the work</p>
+    <h2 class="title">Leadership.</h2>
+    <div class="people">
+      <div class="person"><div class="ini">DL</div><div class="name">David Levine</div><div class="role">Founder &amp; President</div></div>
+      <div class="person"><div class="ini">CC</div><div class="name">Cornelia Close</div><div class="role">Ethics Committee Chair</div></div>
+      <div class="person"><div class="ini">RS</div><div class="name">Rene&eacute; Smith</div><div class="role">Research Committee Chair</div></div>
+      <div class="person"><div class="ini">RG</div><div class="name">Rick Gate</div><div class="role">Action Committee Chair</div></div>
+    </div>
+    <p class="lede narrow" style="margin-top:24px; font-size:16px;">The board reserves at least two seats for people from the communities the Institute's projects serve. The Policy chair and the broader advisory council are being recruited now.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="cta">
+      <h2>Help build the layer that <em class="kin-emph">governs the agents.</em></h2>
+      <p>The Institute is recruiting committee members, advisory council members, research partners, and community collaborators. If your work touches AI governance, ethics, public policy, or the communities these projects serve, get in touch.</p>
+      <a class="btn btn-primary" href="mailto:david.levine@kinship.systems?subject=Kinship%20Intelligence%20Institute">Work with us &rarr;</a>
+      <span class="email">or write to <a href="mailto:david.levine@kinship.systems">david.levine@kinship.systems</a></span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap foot">
+    <div>
+      <img src="assets/logo-stacked-skyblue.svg" alt="Kinship Intelligence Institute">
+      <p class="meta">Kinship Intelligence Institute<br>An independent 501(c)(3) nonprofit</p>
+    </div>
+    <p class="ind">The Institute is funded through the Kinship entities and governed independently of them. Its research agenda, editorial direction, and public statements are its own.</p>
+  </div>
+</footer>
+
+</body>
+</html>
