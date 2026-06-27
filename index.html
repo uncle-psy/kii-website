@@ -78,14 +78,16 @@
   .era.future { background: linear-gradient(180deg, rgba(247,148,29,0.10), transparent 70%), var(--surface); border-color: rgba(247,148,29,0.36); }
 
   /* ---- HEARTS ---- */
-  .hearts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 8px; }
-  .signal { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; }
-  .signal .ltr { font-family: var(--font-display); font-size: 30px; color: var(--fg-dim); float: right; line-height: 1; }
-  .signal h4 { font-family: var(--font-display); font-size: 19px; margin: 0 0 4px; }
-  .signal .of { font-size: 13px; color: var(--kin-skyblue); margin: 0 0 12px; }
-  .signal p { font-size: 13px; line-height: 1.5; color: var(--fg-muted); margin: 0; clear: both; }
+  .hearts { display: grid; gap: 14px; margin-top: 8px; }
+  .signal { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px 28px; display: grid; grid-template-columns: 180px 1fr; gap: 24px; align-items: start; }
+  .signal .head .ltr { font-family: var(--font-display); font-size: 34px; color: var(--fg); line-height: 1; }
+  .signal .head h4 { font-family: var(--font-display); font-size: 21px; margin: 8px 0 2px; }
+  .signal .head .of { font-size: 13px; color: var(--kin-skyblue); margin: 0; }
+  .signal .desc p { font-size: 14px; line-height: 1.62; color: var(--fg-muted); margin: 0 0 12px; }
+  .signal .desc p:last-child { margin-bottom: 0; }
+  .signal .desc p strong { color: var(--fg); font-weight: 700; }
   .signal.agency { border-color: rgba(247,148,29,0.42); box-shadow: var(--shadow-glow-accent); }
-  .signal.agency .ltr { color: var(--accent); }
+  .signal.agency .head .ltr { color: var(--accent); }
 
   /* ---- Pillars ---- */
   .pillar-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 8px; }
@@ -108,26 +110,53 @@
   .stat-strip .v { font-family: var(--font-display); font-size: 38px; line-height: 1; }
   .stat-strip .k { font-size: 12px; color: var(--fg-soft); margin-top: 8px; line-height: 1.4; }
 
-  /* ---- Governance split ---- */
+  /* ---- Split panels ---- */
   .split { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 8px; }
-  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; }
-  .panel h3 { font-family: var(--font-display); font-size: 22px; margin: 0 0 14px; }
-  .panel p { font-size: 14px; line-height: 1.6; color: var(--fg-muted); margin: 0 0 12px; }
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; display: flex; flex-direction: column; }
+  .panel .plabel { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--kin-skyblue); margin-bottom: 8px; }
+  .panel h3 { font-family: var(--font-display); font-size: 24px; margin: 0 0 14px; }
+  .panel p { font-size: 14px; line-height: 1.62; color: var(--fg-muted); margin: 0 0 12px; }
+  .panel .visit { margin-top: auto; padding-top: 8px; font-family: var(--font-sans); font-weight: 700; font-size: 14px; color: var(--kin-skyblue); }
+  .panel .visit:hover { color: var(--fg); }
+
+  /* ---- Video embed ---- */
+  .vid { position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 8px 0 30px; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); background: #000; box-shadow: var(--shadow-md); }
+  .vid iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+  /* ---- Callout ---- */
+  .callout { background: linear-gradient(180deg, rgba(247,148,29,0.10), transparent 72%), var(--surface); border: 1px solid rgba(247,148,29,0.30); border-radius: var(--radius-xl); padding: 38px 40px; margin-top: 18px; }
+  .callout h3 { font-family: var(--font-display); font-size: 27px; margin: 0 0 16px; }
+  .callout p { font-size: 15px; line-height: 1.66; color: var(--fg-muted); margin: 0 0 14px; }
+  .callout p:last-child { margin-bottom: 0; }
 
   /* ---- Leadership ---- */
-  .people { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 8px; }
-  .person { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; }
-  .person .ini { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; font-family: var(--font-display); font-size: 18px; color: #fff; margin-bottom: 15px; background: linear-gradient(140deg, var(--surface-elev), #0A0D33); border: 1px solid var(--border-strong); }
-  .person .name { font-family: var(--font-display); font-size: 19px; }
+  .people { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 8px; }
+  .person { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; display: grid; grid-template-columns: 72px 1fr; gap: 18px; align-items: start; }
+  .person .photo { width: 72px; height: 72px; object-fit: cover; object-position: center top; border-radius: var(--radius-md); border: 1px solid var(--border-strong); display: block; background: var(--surface-elev); }
+  .person .name { font-family: var(--font-display); font-size: 20px; line-height: 1.1; }
   .person .role { font-size: 13px; color: var(--kin-skyblue); margin-top: 4px; }
+  .person p { font-size: 14px; line-height: 1.6; color: var(--fg-muted); margin: 12px 0 0; }
 
   /* ---- CTA ---- */
-  .cta { background: linear-gradient(135deg, #100E59, #0A0D33); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 64px 48px; text-align: center; box-shadow: var(--shadow-lg); }
+  .cta { background: linear-gradient(135deg, #100E59, #0A0D33); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 60px 48px; text-align: center; box-shadow: var(--shadow-lg); }
   .cta h2 { font-family: var(--font-display); font-size: clamp(30px, 4vw, 44px); margin: 0 0 18px; }
   .cta p { font-size: 17px; color: var(--fg-muted); max-width: 56ch; margin: 0 auto 28px; line-height: 1.6; }
   .cta .btn { padding: 16px 30px; font-size: 16px; }
-  .cta .email { display: block; margin-top: 18px; font-size: 14px; color: var(--fg-soft); }
-  .cta .email a { color: var(--kin-skyblue); }
+  .cform { max-width: 540px; margin: 0 auto; text-align: left; display: grid; gap: 14px; }
+  .cform .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .cform .field { display: grid; gap: 6px; }
+  .cform label { font-family: var(--font-sans); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-soft); }
+  .cform input, .cform textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--border-strong); border-radius: var(--radius-xs); color: var(--fg); font-family: var(--font-sans); font-size: 15px; padding: 12px 14px; }
+  .cform input::placeholder, .cform textarea::placeholder { color: var(--fg-dim); }
+  .cform input:focus, .cform textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .cform textarea { min-height: 120px; resize: vertical; }
+  .cform input[aria-invalid="true"], .cform textarea[aria-invalid="true"] { border-color: var(--danger); }
+  .cform .err { font-size: 13px; color: var(--danger); }
+  .cform button[type="submit"] { justify-self: start; margin-top: 4px; }
+  .cform button[type="submit"][disabled] { opacity: 0.6; cursor: default; }
+  .form-success { display: none; font-size: 16px; color: var(--success); padding: 14px 0; }
+  .form-success:not(:empty) { display: block; }
+  @media (max-width: 520px) { .cform .row { grid-template-columns: 1fr; } }
 
   /* ---- Footer ---- */
   footer { border-top: 1px solid var(--border); padding: 36px 0 56px; }
@@ -141,7 +170,7 @@
     .stat-strip > div:nth-child(2) { border-right: 0; }
     .stat-strip > div:nth-child(1), .stat-strip > div:nth-child(2) { border-bottom: 1px solid var(--border); }
     .stakes, .split, .pillar-grid, .eras { grid-template-columns: 1fr; }
-    .hearts { grid-template-columns: repeat(2, 1fr); }
+    .signal { grid-template-columns: 1fr; gap: 10px; }
     .people { grid-template-columns: repeat(2, 1fr); }
     .nav-links { display: none; }
   }
@@ -168,7 +197,7 @@
         <a href="#leadership">Leadership</a>
       </nav>
     </div>
-    <a class="btn btn-secondary" href="https://motodave.com" target="_blank" rel="noopener">Get in touch</a>
+    <a class="btn btn-secondary" href="#contact">Get in touch</a>
   </div>
 </div>
 
@@ -181,8 +210,8 @@
     <p class="lead">AI psychosis, fed by narcissistic models that reward delusion. Data centers draining water, burning fracked gas, and straining grids. Feeds tuned to hold your attention as they extract and exploit.</p>
     <p class="lead">When a wildfire bears down, firefighters light a fire of their own. The controlled burn clears the fuel in its path, and the inferno dies where the backfire has already passed. Same fire, set with care, to protect what we love. The Institute uses AI to make AI rare, and to put agency back in the hands of every person, community, and living system the last decade has flattened.</p>
     <div class="hero-ctas">
-      <a class="btn btn-primary" href="https://kiduna.club" target="_blank" rel="noopener">Join us on Kiduna &rarr;</a>
-      <a class="btn btn-secondary" href="https://motodave.com/" target="_blank" rel="noopener">Get in touch</a>
+      <a class="btn btn-primary" href="#contact">Work with us &rarr;</a>
+      <a class="btn btn-secondary" href="https://kiduna.club" target="_blank" rel="noopener">Join us on Kiduna</a>
     </div>
   </div>
 </header>
@@ -214,10 +243,12 @@
     <p class="kicker">The art of agency</p>
     <h2 class="title">Agency has been <em class="kin-emph">flattened.</em></h2>
     <div class="body-col">
-      <p>Agency is the capacity to sense, choose, and act on the world. The most radical technology since the written word has been pointed at the dullest problems imaginable: one-to-one chat, growth hacking, automating the routine. Almost no one has asked what it could set loose. Agency has never been treated as an art with its own discipline, its own practice, its own depths.</p>
-      <p>The platforms got there first, and they flattened it. Reach without purpose. Choices narrowed to whatever the feed rewards. A slow drift toward helplessness, sold as convenience. You fight the algorithm for distribution, and you never own your audience, your data, or your relationship to the people on the other side.</p>
-      <p>Every living thing runs on agency. A cell senses and responds. A person chooses and acts. A forest moves nutrients and warning signals through its roots to exactly where they are needed, so the whole system can sense, adapt, and respond as conditions change. Flatten agency at any of these scales and the system starts to fail.</p>
-      <p>The Institute protects agency where it is under attack, and works to expand it everywhere: in individuals, in the organizations they build together, and in the living systems they depend on. <strong>An agent that works well leaves a person more capable, more connected, and freer than it found them.</strong></p>
+      <p>Agency is the capacity to sense, choose, and act in the world. It is the defining quality of every living organism, every human life, every healthy community, and every thriving culture.</p>
+      <p>Artificial intelligence is the first technology in centuries with the potential to expand agency itself. Yet most of the conversation has focused elsewhere: on replacing jobs, automating tasks, optimizing clicks, generating content, reducing costs, or the risks of misuse. Far less attention has been given to an even more significant question: what new forms of human, organizational, and ecological agency become possible when intelligence can be shared, extended, and coordinated?</p>
+      <p>For generations our technologies have been designed primarily to increase the scale and efficiency of institutions. Human agency was often compressed in the process. Platforms amplified reach while weakening relationships. Recommendation engines optimized attention while narrowing possibility. Convenience replaced competence. Ownership gave way to dependence. We gained unprecedented connectivity while gradually surrendering control over our audiences, our data, our choices, and, increasingly, our sense of what is worth choosing at all.</p>
+      <p>Every living system depends on agency. A cell senses and responds. A person perceives, decides, and acts. A forest routes nutrients, information, and warning signals through living mycelial networks to exactly where they are needed, allowing the whole ecosystem to adapt as conditions change. Agency is what allows life to flourish. When it is flattened, resilience fades. Diversity shrinks. Intelligence becomes brittle.</p>
+      <p>The work of the Kinship Intelligence Institute is to understand, protect, and expand agency in all its forms: in individuals, in the organizations they build together, and in the living systems that make all other forms of flourishing possible.</p>
+      <p>We believe the measure of artificial intelligence is super simple. <strong>After an encounter, are people more capable, more connected, more conscious, more sovereign, and more able to shape their own future than they were before?</strong></p>
     </div>
     <div class="scale">
       <span class="chip">Cell</span><span class="arr">&rarr;</span>
@@ -235,12 +266,19 @@
 <section class="section" id="alignment">
   <div class="wrap">
     <p class="kicker">The real alignment challenge</p>
-    <h2 class="title">Aligned to <em class="kin-emph">which humans?</em></h2>
+    <h2 class="title">Aligned to <em class="kin-emph">whom?</em></h2>
     <div class="body-col">
-      <p>The frontier labs treat alignment as a technical problem to be solved at the center: train the model, test the model, align the model with humanity. But humanity isn't aligned. The people who oppress, extract, colonize, and wage war are human too. There is no generic alignment, because there is no generic human.</p>
-      <p>Most labs also treat alignment as obedience. A perfectly obedient agent in the hands of an uncaring person, company, or state does exactly what it's told, and scales whatever pattern already exists, including the worst ones.</p>
-      <p>Kinship moves the target. Care has to extend past the operator to everyone and everything an agent's actions touch: the person across the table, the community downstream, the ecosystem that absorbs the cost. <strong>Alignment runs from organisms to ecosystems, or it doesn't run at all.</strong></p>
-      <p>And it can't be granted from the center. It has to be grown, one person, one agent, one organization at a time. Each person tunes their own intelligence like an instrument, then instills their agents with what they find: their wisdom, their values, their vision. That work compounds in community.</p>
+      <p>The frontier labs largely frame alignment as a technical problem to be solved at the center: train the model, test the model, align the model with humanity. Alignment is treated as obedience. Build an agent that faithfully follows human instructions, and the problem is solved.</p>
+      <p>But humanity is not a coherent quality.</p>
+      <p>Every person carries different values, experiences, loyalties, blind spots, aspirations, and responsibilities. The same intelligence can be applied to heal or exploit, liberate or dominate, uplift or oppress, depending on whose purposes it serves. There is no universal human perspective waiting to be encoded, because there is no generic human.</p>
+      <p>A perfectly obedient agent in the hands of an uncaring person, corporation, or government simply scales whatever pattern already exists, including the harmful ones. Intelligence without care is mindless acceleration.</p>
+      <p><strong>The challenge isn't making agents obedient. It's building intelligent agents that care.</strong></p>
+      <p>Kinship begins from the premise that care cannot stop with the operator issuing the prompt. It has to extend to every person, every community, and every living system touched by the actions of an intelligent agent. Alignment is not simply between a human and a machine. It is a relationship that stretches outward through families, organizations, societies, and ecosystems.</p>
+      <p>That changes the very nature of alignment, which can't be imposed from a frontier lab, an enterprise, or a government. It has to be cultivated by the people who live inside and among these systems every day.</p>
+      <p>The real work isn't aligning the machines, it's aligning ourselves by investigating our beliefs, clarifying our purpose, and becoming more coherent in our relationships with one another and with the living world that sustains us.</p>
+      <p>AI gives us, for the first time, a technology that can help us become more aligned, with ourselves, with one another, and with the living systems we inhabit, by building agents that help us become more self-aware, more connected, more thoughtful, more capable of cooperation, and more responsive to our environments.</p>
+      <p>The deepest alignment problem was never aligning machines to humanity. It was aligning humanity with itself, and with the living world that makes every human life possible.</p>
+      <p>Intelligent agents may become the first technology capable of helping us do both.</p>
     </div>
   </div>
 </section>
@@ -248,16 +286,46 @@
 <!-- HEARTS -->
 <section class="section" id="hearts">
   <div class="wrap">
-    <p class="kicker">How the work gets measured</p>
-    <h2 class="title">Six signals, <em class="kin-emph">health at the center.</em></h2>
-    <p class="lede narrow" style="margin-bottom:30px;">Tending relationships is the work of a Sentinel, a kind of agent that reads the emotional field and guides interactions home. HEARTS tracks six signals wherever it's invited to participate. Each runs from &minus;100 to +100, and health lives at the center: attunement without self-erasure, agency without domination. At the far edges it stops being subtle. Coercion gets blocked, and crisis brings in human support.</p>
+    <p class="kicker">How our work is measured</p>
+    <h2 class="title">Six relational signals. <em class="kin-emph">One living field.</em></h2>
+    <div class="body-col" style="margin-bottom:30px;">
+      <p><strong>Agency and alignment cannot improve unless they can be observed.</strong></p>
+      <p>The Kinship Intelligence Institute studies the relationships between people, organizations, ecosystems, and intelligent agents through a measurement framework called HEARTS. Rather than evaluating isolated individuals, groups of people, intelligent agents, or AI models, HEARTS measures the dynamics that emerge among them.</p>
+      <p>Six continuously varying signals describe the state of those relationships. Each runs from &minus;100 to +100, with 0 serving as a point of balance: attunement without self-erasure, agency without domination, adaptability without instability.</p>
+      <p>The center is not always the goal. An educator may intentionally amplify curiosity. A game may reward competition. A simulation may explore conflict. A research study may deliberately shift the field toward one pole or another. What matters is not enforcing neutrality, it is making those choices conscious.</p>
+      <p>The framework is observed by Sentinels: intelligent agents that continuously monitor the relational field and gently modulate it. They don't police behavior or enforce ideology. They detect emerging patterns, surface them to the people involved, and, when invited, offer small interventions to humans and agents alike that support coherence, repair, and mutual respect.</p>
+      <p>At the far edges, subtle guidance gives way to clear boundaries. Coercion is interrupted. Harmful dynamics are surfaced. Crisis brings human support.</p>
+      <p><strong>The goal is not compliance.</strong> It is a clean relational field where people and intelligent agents can think clearly, relate honestly, cooperate freely, and cultivate alignment rather than drift toward manipulation, coercion, or chaos.</p>
+    </div>
     <div class="hearts">
-      <div class="signal"><span class="ltr">H</span><h4>Harmony</h4><p class="of">The signal of attunement</p><p>People feel seen, heard, and understood. Too weak and connection thins toward conflict; too strong and it curdles into people-pleasing.</p></div>
-      <div class="signal agency"><span class="ltr">E</span><h4>Empowerment</h4><p class="of">The signal of agency</p><p>Clean yeses and clean nos. Self-authorship. Weakened, it collapses toward helplessness; inflated, it tips into domination. Coercion is a hard boundary.</p></div>
-      <div class="signal"><span class="ltr">A</span><h4>Artistry</h4><p class="of">The signal of adaptability</p><p>Learning, iterating, transforming. You experiment and evolve without losing your core, between stagnation and identity whiplash.</p></div>
-      <div class="signal"><span class="ltr">R</span><h4>Reason</h4><p class="of">The signal of purpose</p><p>Meaning and direction, clear without being rigid. It will not reinforce extremist narratives or harden into dogma.</p></div>
-      <div class="signal"><span class="ltr">T</span><h4>Trust</h4><p class="of">The signal of safety</p><p>Steadiness under stress. Grounded and open, neither hijacked by fear nor inflated into recklessness.</p></div>
-      <div class="signal"><span class="ltr">S</span><h4>Synthesis</h4><p class="of">The signal of integration</p><p>Insights land and what you learn becomes how you live, between numb dissociation and endless rumination.</p></div>
+      <div class="signal">
+        <div class="head"><div class="ltr">H</div><h4>Harmony</h4><p class="of">The signal of attunement</p></div>
+        <div class="desc"><p>The capacity to sense, resonate, and relate. At its center, people feel seen, heard, and understood. Too little harmony fragments into alienation and chronic conflict. Too much dissolves into people-pleasing, conformity, and the loss of authentic voice.</p></div>
+      </div>
+      <div class="signal">
+        <div class="head"><div class="ltr">E</div><h4>Empowerment</h4><p class="of">The signal of agency</p></div>
+        <div class="desc"><p>The capacity to choose, initiate, and follow through. At its center lives self-authorship: clean yeses, clean nos, and genuine consent. Too little becomes helplessness and dependency. Too much becomes domination, coercion, and the erosion of others' agency.</p></div>
+      </div>
+      <div class="signal">
+        <div class="head"><div class="ltr">A</div><h4>Artistry</h4><p class="of">The signal of adaptability</p></div>
+        <div class="desc"><p>The capacity to learn, experiment, and transform without losing identity. Too little calcifies into rigidity and stagnation. Too much becomes endless reinvention, novelty seeking, and identity drift.</p></div>
+      </div>
+      <div class="signal">
+        <div class="head"><div class="ltr">R</div><h4>Reason</h4><p class="of">The signal of purpose</p></div>
+        <div class="desc"><p>The capacity to make meaning and choose direction. At its center, purpose is clear without becoming brittle. Too little drifts into confusion and aimlessness. Too much hardens into certainty, dogma, and ideological capture.</p></div>
+      </div>
+      <div class="signal">
+        <div class="head"><div class="ltr">T</div><h4>Trust</h4><p class="of">The signal of safety</p></div>
+        <div class="desc"><p>The capacity to remain grounded under uncertainty. At its center, people are open without becoming vulnerable to manipulation. Too little collapses into fear and hypervigilance. Too much becomes na&iuml;vet&eacute;, recklessness, and misplaced confidence.</p></div>
+      </div>
+      <div class="signal">
+        <div class="head"><div class="ltr">S</div><h4>Symmetry</h4><p class="of">The signal of complementarity</p></div>
+        <div class="desc">
+          <p>The capacity to integrate rather than divide. At its center, apparent opposites become complements rather than enemies. Reflection informs action, and action deepens reflection. Intuition and reason, listening and leadership, the receptive and the generative, the lunar and the solar all become partners in a larger whole. The need to choose sides gives way to the ability to hold complexity, paradox, and multiple perspectives without losing clarity or conviction.</p>
+          <p>Too little symmetry fractures experience into binaries: us and them, right and wrong, winning and losing, self and other. Identity hardens around opposition, and every difference becomes a struggle for dominance.</p>
+          <p>Healthy symmetry steps out of the power struggle altogether. It recognizes that many of life's deepest tensions are not problems to eliminate but polarities to navigate. Integration replaces polarization. Complementarity replaces conflict. Consciousness becomes spacious enough to hold complexity without collapsing into certainty.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -265,27 +333,27 @@
 <!-- ERAS -->
 <section class="section" id="eras">
   <div class="wrap">
-    <p class="kicker">Three phases of humanity</p>
-    <h2 class="title">Kinship, hierarchy, <em class="kin-emph">biomimesis.</em></h2>
-    <p class="lede narrow" style="margin-bottom:34px;">The architecture of society isn't a law of nature. Humans made it, in two great phases so far, and it's open for revision. The third is beginning now, and for the first time in ten thousand years, anyone can help shape it.</p>
+    <p class="kicker">Related. Institutional. Agentic.</p>
+    <h2 class="title">Three phases of <em class="kin-emph">humanity.</em></h2>
+    <p class="lede narrow" style="margin-bottom:34px;">The architecture of society is not a law of nature. It is something humans have invented, reinvented, and refined over time. We have lived through two great organizational ages so far, and a third is beginning. For the first time in ten thousand years, anyone can help shape what comes next.</p>
     <div class="eras">
       <div class="era">
-        <span class="badge">The Kinship Era</span>
-        <h3>The original form</h3>
-        <p class="sub">Given to us</p>
-        <p>For all but the last fraction of human history we lived in relatedness. Small bands, face to face, woven into the living world. Care was structural. Everyone knew who they were accountable to, and the feedback was immediate.</p>
+        <span class="badge">The original form</span>
+        <h3>The Kinship Era</h3>
+        <p class="sub">Given to us.</p>
+        <p>For all but the last fraction of human history, we lived in relatedness. Small bands, face to face, woven into the living world. Care was structural. Everyone knew who they were accountable to, and reciprocity was immediate.</p>
       </div>
       <div class="era">
-        <span class="badge">The Hierarchical Era</span>
-        <h3>The classical world</h3>
-        <p class="sub">Imposed on us</p>
-        <p>Agriculture, surplus, borders, ledgers, standing armies. The universe became a machine and humans became separate from nature. Complexity came to mean top-down control. Extraction scaled. Dogma calcified.</p>
+        <span class="badge">The age of institutions</span>
+        <h3>The Institutional Era</h3>
+        <p class="sub">Imposed on us.</p>
+        <p>Agriculture, surplus, borders, ledgers, standing armies. The universe became rational, and humans separated themselves from nature. Coordination came to mean hierarchy. Extraction scaled. Dogma calcified.</p>
       </div>
       <div class="era future">
-        <span class="badge">The Biomimetic Era</span>
-        <h3>Frontiers of culture</h3>
-        <p class="sub">This one we design</p>
-        <p>Organizations built like living systems: adaptive, decentralized, entangled, coordinated by intelligent agents. Hierarchy gives way to networks that sense, adapt, and respond. The frontier, this time, is culture itself.</p>
+        <span class="badge">The frontiers of culture</span>
+        <h3>The Agentic Era</h3>
+        <p class="sub">This one we design.</p>
+        <p>Organizations designed as living systems: adaptive, decentralized, and entangled. Coordinated by people and intelligent agents working together as one. Hierarchy gives way to networks that sense, adapt, and respond. The frontier, this time, is culture itself.</p>
       </div>
     </div>
   </div>
@@ -294,74 +362,80 @@
 <!-- PILLARS -->
 <section class="section" id="pillars">
   <div class="wrap">
-    <p class="kicker">How the Institute is organized</p>
-    <h2 class="title">Four pillars, governed <em class="kin-emph">independently.</em></h2>
-    <p class="lede narrow" style="margin-bottom:30px;">Policy is informed by research. Ethics review shapes how agents get deployed. Research questions come out of action in the field. Each pillar runs as a standing committee, coordinating through quarterly joint sessions.</p>
+    <p class="kicker">How the Institute creates change</p>
+    <h2 class="title">Four pillars. <em class="kin-emph">One living system.</em></h2>
+    <p class="lede narrow" style="margin-bottom:30px;">Research discovers. Ethics guides. Policy scales. Action tests. Each strengthens the others, creating a continuous cycle where ideas are challenged in the real world, evidence informs policy, ethics shapes deployment, and new questions return to research.</p>
     <div class="pillar-grid">
       <article class="pillar">
         <div class="cover cover-policy"></div>
         <div class="body">
-          <span class="roman">Pillar I &middot; Policy</span>
           <h3>Policy</h3>
-          <p class="chair">Committee Chair to be appointed</p>
-          <p>Rigorous, accessible analysis for policymakers and the public: data center energy and water, labor displacement, agents in surveillance and warfare, and enforceable platform accountability standards.</p>
+          <p>Transforming research into public policy, governance, and institutional design that helps societies navigate the age of intelligent agents.</p>
         </div>
       </article>
       <article class="pillar">
         <div class="cover cover-ethics"></div>
         <div class="body">
-          <span class="roman">Pillar II &middot; Ethics</span>
           <h3>Ethics</h3>
-          <p class="chair">Cornelia Close, Committee Chair</p>
-          <p>Alignment beyond obedience. Measurable criteria for healthy versus extractive design, the line between support and manipulation, and standing authority to audit Kinship itself and publish critical findings.</p>
+          <p>Defining measurable standards for care, agency, alignment, and accountability, and holding ourselves to them.</p>
         </div>
       </article>
       <article class="pillar">
         <div class="cover cover-research"></div>
         <div class="body">
-          <span class="roman">Pillar III &middot; Research</span>
           <h3>Research</h3>
-          <p class="chair">Rene&eacute; Smith, Committee Chair</p>
-          <p>The Kinship platform as a living laboratory. How relational norms hold at scale, whether HEARTS tracks real wellbeing, and early detection of dependency and harm. Methods, data, and safety code published openly.</p>
+          <p>Studying intelligence, relationships, organizations, and ecosystems to understand what enables humans, organizations, ecosystems, and intelligent agents to flourish together.</p>
         </div>
       </article>
       <article class="pillar">
         <div class="cover cover-action"></div>
         <div class="body">
-          <span class="roman">Pillar IV &middot; Action</span>
           <h3>Action</h3>
-          <p class="chair">Rick Gate, Committee Chair</p>
-          <p>Deploying agents where they do material good and commercial incentives won't: entrepreneurship in Nigeria and Kenya, Indigenous language preservation, agricultural decision support, veterans transition, and healthcare access.</p>
+          <p>Building, deploying, and evaluating intelligent systems in the real world, especially where markets alone fail to create equitable outcomes.</p>
         </div>
       </article>
-    </div>
-    <div class="stat-strip">
-      <div><div class="v">501(c)(3)</div><div class="k">Independently governed, full editorial independence</div></div>
-      <div><div class="v">20%</div><div class="k">Of Kinship Agents founding stock allocated to the Institute</div></div>
-      <div><div class="v">&ge;5%</div><div class="k">Of net profits committed annually as an operating grant</div></div>
-      <div><div class="v">Four</div><div class="k">Pillars: Policy, Ethics, Research, Action</div></div>
     </div>
   </div>
 </section>
 
-<!-- GOVERNANCE -->
-<section class="section tight" id="governance">
+<!-- CAT-FAWN + ECOSYSTEM -->
+<section class="section tight" id="cat-fawn">
   <div class="wrap">
-    <p class="kicker">Structure and independence</p>
-    <h2 class="title">Close to the platform. <em class="kin-emph">Free to criticize it.</em></h2>
-    <div class="split">
+    <p class="kicker">The story behind the logo</p>
+    <h2 class="title">The Cat and <em class="kin-emph">the Fawn.</em></h2>
+    <div class="vid">
+      <iframe src="https://www.youtube.com/embed/o-VRMB0-R98" title="The Cat and the Fawn" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    <div class="body-col">
+      <p>The CAT-FAWN mark is more than a logo. It is the philosophical foundation of Kinship Intelligence.</p>
+      <p>The symbol comes from the work of Four Arrows, whose decades-long exploration of Indigenous worldview began with a near-death experience in Mexico's Copper Canyon and a vision of the words CAT and FAWN illuminated in lights. That experience became the CAT-FAWN Connection: a framework for understanding how CAT (Concentration Activated Transformation) and FAWN (Fear, Authority, Words, and Nature) shape the way we perceive ourselves, relate to one another, and engage with the living world.</p>
+      <p>For us, the Cat and the Fawn represent complementarity. Strength without domination. Courage without aggression. Independence without separation. Relationship without dependence. They remind us that the deepest transformations come not from winning power struggles, but from transcending the struggle itself.</p>
+      <p>Kinship Intelligence brings those principles into the age of intelligent agents, creating technologies that cultivate awareness, reciprocity, agency, and care rather than extraction, manipulation, and control.</p>
+    </div>
+    <div class="split" style="margin-top:34px;">
       <div class="panel">
-        <h3>Editorial independence</h3>
-        <p>The Institute is an independent 501(c)(3) with its own board, its own committees, and full editorial control over its publications, policy positions, and research findings.</p>
-        <p>No entity outside the Institute, including Kinship Systems and its commercial affiliates, has review or approval authority over what it publishes. That provision is written into the bylaws and cannot be amended without a two-thirds vote of the full board.</p>
-        <p>It may, and at times should, publish findings critical of the Kinship platform itself. The credibility of the Institute depends on it.</p>
+        <span class="plabel">From research to infrastructure</span>
+        <h3>Kiduna Club</h3>
+        <p>Kiduna Club is the commercial steward of Kinship Intelligence and the intellectual property developed alongside the Institute.</p>
+        <p>It transforms the Institute's research into software, protocols, and infrastructure for the emerging agentic economy, including the Kinship orchestration layer, the HEARTS Sentinel, DUNAs, identity and governance systems, and the tools that allow humans and intelligent agents to work together as one.</p>
+        <p>Revenue generated through Kiduna Club helps sustain the Institute's long-term research, education, and mission-driven work.</p>
+        <a class="visit" href="https://kiduna.club" target="_blank" rel="noopener">Visit Kiduna Club &rarr;</a>
       </div>
       <div class="panel">
-        <h3>How it stays funded</h3>
-        <p><strong>Twenty percent</strong> of Kinship Agents founding stock is allocated to the Institute, giving it a permanent material interest in the platform's direction.</p>
-        <p><strong>At least five percent</strong> of net profits, set annually by the board, is directed to the Institute as an operating grant, independent of equity value.</p>
-        <p><strong>Grants and partnerships</strong> from foundations, agencies, and individuals, accepted only where they don't compromise editorial independence.</p>
+        <span class="plabel">From research to practice</span>
+        <h3>Kinship Systems</h3>
+        <p>Kinship Systems brings the Institute's work into the field.</p>
+        <p>As a consultancy, systems integrator, and implementation partner, it helps governments, enterprises, nonprofits, entrepreneurs, communities, and small businesses design, develop, and deploy agentic systems rooted in the principles of Kinship Intelligence.</p>
+        <p>Whether developing custom intelligent agents, organizational architectures, governance frameworks, or complete technology stacks, Kinship Systems translates research into practical, measurable impact.</p>
+        <a class="visit" href="https://kinship.systems" target="_blank" rel="noopener">Visit Kinship Systems &rarr;</a>
       </div>
+    </div>
+    <div class="callout">
+      <h3>Mission-driven, powered by partnership</h3>
+      <p>Some of the most important applications of intelligent agents will never be the most profitable.</p>
+      <p>The Kinship Intelligence Institute works alongside Kiduna Club and Kinship Systems to pursue research and deploy technologies whose greatest value is social, ecological, and cultural rather than commercial. Through fiscal sponsorship, charitable giving, institutional partnerships, and grant funding, donors make it possible to undertake work that market incentives alone rarely sustain.</p>
+      <p>That includes expanding entrepreneurship and economic opportunity in underserved communities; preserving Traditional Ecological Knowledge (TEK) and endangered languages; building decision-support systems for regenerative agriculture and watershed stewardship; helping veterans navigate the transition to civilian life; advancing suicide prevention and mental health; improving access to healthcare and the fruits of scientific research; strengthening community resilience in the face of climate change; and equipping local communities to protect the ecosystems they call home, from forests and rivers to fertile valleys threatened by extractive development and large-scale data center expansion.</p>
+      <p>Every grant, sponsorship, and tax-deductible contribution expands the reach of this work, allowing research, technology, philanthropy, and community partnerships to reinforce one another in service of a more intelligent, resilient, and caring world.</p>
     </div>
   </div>
 </section>
@@ -369,15 +443,67 @@
 <!-- LEADERSHIP -->
 <section class="section tight" id="leadership">
   <div class="wrap">
-    <p class="kicker">Who is doing the work</p>
-    <h2 class="title">Leadership.</h2>
+    <p class="kicker">Leadership</p>
+    <h2 class="title">A board built for <em class="kin-emph">kinship intelligence.</em></h2>
+    <p class="lede narrow" style="margin-bottom:30px;">The Kinship Intelligence Institute is guided by leaders working across technology, human-centered culture, Indigenous knowledge, storytelling, finance, operations, sustainability, and public-interest deployment. Together, they bring the practical judgment, lived experience, and relational intelligence needed to help intelligent agents serve people, communities, and the living systems they inhabit.</p>
     <div class="people">
-      <div class="person"><div class="ini">DL</div><div class="name">David Levine</div><div class="role">Founder &amp; President</div></div>
-      <div class="person"><div class="ini">CC</div><div class="name">Cornelia Close</div><div class="role">Ethics Committee Chair</div></div>
-      <div class="person"><div class="ini">RS</div><div class="name">Rene&eacute; Smith</div><div class="role">Research Committee Chair</div></div>
-      <div class="person"><div class="ini">RG</div><div class="name">Rick Gate</div><div class="role">Action Committee Chair</div></div>
+      <div class="person">
+        <img class="photo" src="assets/people/david-levine.png" alt="David Levine">
+        <div class="pmeta">
+          <div class="name">David Levine</div>
+          <div class="role">Chairman, Founder &amp; President</div>
+          <p>David Levine is a technology entrepreneur, systems architect, and founder of Kiduna Club and the Kinship Intelligence Institute. His work spans agentic AI, blockchain, digital identity, cybersecurity, geospatial intelligence, renewable energy, public policy, and the design of new organizational forms for humans and intelligent agents working together.</p>
+        </div>
+      </div>
+      <div class="person">
+        <img class="photo" src="assets/people/zoe-poindexter.jpg" alt="Zo&euml; Poindexter">
+        <div class="pmeta">
+          <div class="name">Zo&euml; Poindexter</div>
+          <div class="role">Director &middot; Story, Media &amp; Culture</div>
+          <p>Zo&euml; Poindexter is a producer, director, journalist, and documentary storyteller whose work explores culture, love, justice, and social transformation. Her experience across CBS News, documentary production, Georgetown University, and independent film brings the Institute a deep capacity for narrative, public education, and human-centered media.</p>
+        </div>
+      </div>
+      <div class="person">
+        <img class="photo" src="assets/people/renee-smith.jpg" alt="Ren&eacute;e Smith">
+        <div class="pmeta">
+          <div class="name">Ren&eacute;e Smith</div>
+          <div class="role">Director &middot; Human-Centered Leadership</div>
+          <p>Ren&eacute;e Smith is the founder and CEO of A Human Workplace, an award-winning speaker, researcher, strategist, and leader in the movement to make work more loving and human. Her work on love-centered leadership helps organizations reduce fear, deepen belonging, and create cultures where people can flourish.</p>
+        </div>
+      </div>
+      <div class="person">
+        <img class="photo" src="assets/people/rick-gage.jpg" alt="Rick Gage">
+        <div class="pmeta">
+          <div class="name">Rick Gage</div>
+          <div class="role">Director &middot; Culture &amp; Community</div>
+          <p>Rick Gage is a leadership coach, facilitator, and executive change agent focused on building cultures of trust, care, and community. His work helps leaders and organizations move from transactional management toward deeper forms of human connection, purpose, and collective capacity.</p>
+        </div>
+      </div>
+      <div class="person">
+        <img class="photo" src="assets/people/cornelia-klose.png" alt="Cornelia Klose">
+        <div class="pmeta">
+          <div class="name">Cornelia Klose</div>
+          <div class="role">Director &middot; Operations, AI &amp; Emotional Competence</div>
+          <p>Cornelia Klose works at the intersection of operational systems, emotional competence, sustainability, and intentional AI. Her work focuses on redesigning organizations so that human capability, care, and sustainable growth are built into the way systems actually function.</p>
+        </div>
+      </div>
+      <div class="person">
+        <img class="photo" src="assets/people/dylan-aubrey.jpg" alt="Dylan Aubrey">
+        <div class="pmeta">
+          <div class="name">Dylan Aubrey</div>
+          <div class="role">Director &middot; Indigenous Knowledge, Media &amp; Restoration</div>
+          <p>Dylan Aubrey is a Yurok storyteller, veteran, filmmaker, entrepreneur, and founder of Drum Circle News. His work amplifies Indigenous voices, reconnects communities through media and culture, and documents ecological restoration and Traditional Ecological Knowledge along the Klamath River.</p>
+        </div>
+      </div>
+      <div class="person">
+        <img class="photo" src="assets/people/william-thatcher.jpg" alt="William Thatcher">
+        <div class="pmeta">
+          <div class="name">William Thatcher</div>
+          <div class="role">Director &middot; Finance &amp; Stewardship</div>
+          <p>William Thatcher is founder and president of Thatcher Wealth Management, where he helps people design long-term financial plans rooted in stability, stewardship, and care. His background in financial planning, entrepreneurship, retirement strategy, and charitable giving supports the Institute's work in sustainable funding and responsible growth.</p>
+        </div>
+      </div>
     </div>
-    <p class="lede narrow" style="margin-top:24px; font-size:16px;">The board reserves at least two seats for people from the communities the Institute's projects serve. The Policy chair and the broader advisory council are being recruited now.</p>
   </div>
 </section>
 
@@ -385,10 +511,34 @@
 <section class="section" id="contact">
   <div class="wrap">
     <div class="cta">
-      <h2>Help build the layer that <em class="kin-emph">governs the agents.</em></h2>
-      <p>The Institute is recruiting committee members, advisory council members, research partners, and community collaborators. If your work touches AI governance, ethics, public policy, or the communities these projects serve, get in touch.</p>
-      <a class="btn btn-primary" href="mailto:david.levine@kinship.systems?subject=Kinship%20Intelligence%20Institute">Work with us &rarr;</a>
-      <span class="email">or write to <a href="mailto:david.levine@kinship.systems">david.levine@kinship.systems</a></span>
+      <h2>Put your good where it does <em class="kin-emph">the most.</em></h2>
+      <p>The Institute works with funders, researchers, governments, companies, communities, and field partners to deploy intelligent agents where they can create real social, ecological, and cultural value. Bring us a project, a place, a problem, or a partnership, and let's explore what's possible together.</p>
+      <div class="form-success" data-fs-success></div>
+      <form class="cform" id="contact-form" action="https://formspree.io/f/mojowdve" method="POST">
+        <div class="row">
+          <div class="field">
+            <label for="cf-name">Name</label>
+            <input id="cf-name" type="text" name="name" autocomplete="name" data-fs-field>
+            <span class="err" data-fs-error="name"></span>
+          </div>
+          <div class="field">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" type="email" name="email" autocomplete="email" required data-fs-field>
+            <span class="err" data-fs-error="email"></span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="cf-org">Organization <span style="text-transform:none;font-weight:400;color:var(--fg-dim);">(optional)</span></label>
+          <input id="cf-org" type="text" name="organization" autocomplete="organization" data-fs-field>
+        </div>
+        <div class="field">
+          <label for="cf-message">What you'd like to explore</label>
+          <textarea id="cf-message" name="message" placeholder="A project, a place, a problem, or a partnership." required data-fs-field></textarea>
+          <span class="err" data-fs-error="message"></span>
+        </div>
+        <div class="err" data-fs-error></div>
+        <button class="btn btn-primary" type="submit" data-fs-submit-btn>Work with us &rarr;</button>
+      </form>
     </div>
   </div>
 </section>
@@ -403,6 +553,12 @@
     <p class="ind">The Institute is funded through the Kinship entities and governed independently of them. Its research agenda, editorial direction, and public statements are its own.</p>
   </div>
 </footer>
+
+<script>
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { formElement: '#contact-form', formId: 'mojowdve' });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
 </body>
 </html>
